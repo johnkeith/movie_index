@@ -26,9 +26,25 @@ end
 
 get '/movies' do
   @page = params[:page] || 1
+  @search = params[:query]
+  @all_movies = all_movies
+
+  if @search
+    @all_movies = all_movies.find_all do |movie|
+      movie[:title].downcase.include?(@search.downcase) || 
+      if movie[:synopsis]
+        movie[:synopsis].downcase.include?(@search.downcase)
+      end
+    end
+  end
+
   @page = @page.to_i
   offset = ((@page - 1) * 20)
-  @all_movies = pagination(all_movies, @page, offset)
+  
+  if !@search
+    @all_movies = pagination(@all_movies, @page, offset)
+  end
+  
   erb :movies
 end
 

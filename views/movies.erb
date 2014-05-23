@@ -1,10 +1,21 @@
 <h3>List of All Movies By Title</h3>
+<form action="/movies" method="get">
+  <label for="query">Search: </label>
+  <input type="text" name="query" id="query" />
+
+  <input type="submit" value="Search" />
+</form>
 <ul>
   <% @all_movies.each do |movie| %>
     <li><a href="<%= "/movies/#{movie[:id]}" %>"><%= movie[:title] %></a></li>
   <% end %>
 </ul>
-<% if @page > 1 %>
-  <a href="<%= "/movies?page=#{@page - 1}" %>">Previous Page</a>
+
+<% if !@search %>
+  <% if @page > 1 %>
+    <a href="<%= "/movies?page=#{@page - 1}" %>">Previous Page</a>
+  <% end %>
+  <a href="<%= "/movies?page=#{@page + 1}" %>">Next Page</a>
 <% end %>
-<a href="<%= "/movies?page=#{@page + 1}" %>">Next Page</a>
+
+<p><a href="/movies">Home</a></p>
