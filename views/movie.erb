@@ -1,0 +1,9 @@
+<h3><%= @movie[0][:title] %><h3>
+
+<ul>
+  <% @movie[0].each do |key, value| %>
+    <% if value != nil %>
+      <li><%= "#{key}: #{value}" %></li>
+    <% end %>
+  <% end %>
+</ul>

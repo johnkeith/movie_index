@@ -1,0 +1,6 @@
+<h3>List of All Movies By Title</h3>
+<ol>
+  <% @all_movies.each do |movie| %>
+    <li><a href="<%= "/movies/#{movie[:id]}" %>"><%= movie[:title] %></a></li>
+  <% end %>
+</ol>
