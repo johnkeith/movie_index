@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'pry'
 require 'csv'
 
 def read_movies_csv(csv)
