@@ -1,6 +1,10 @@
 <h3>List of All Movies By Title</h3>
-<ol>
+<ul>
   <% @all_movies.each do |movie| %>
     <li><a href="<%= "/movies/#{movie[:id]}" %>"><%= movie[:title] %></a></li>
   <% end %>
-</ol>
+</ul>
+<% if @page > 1 %>
+  <a href="<%= "/movies?page=#{@page - 1}" %>">Previous Page</a>
+<% end %>
+<a href="<%= "/movies?page=#{@page + 1}" %>">Next Page</a>
